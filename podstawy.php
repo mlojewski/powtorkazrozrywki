@@ -221,37 +221,75 @@
 // echo "koszt wynosi".rentCost(4);
 // echo "koszt wynosi".rentCost(9);
 
-function changeMoney($a)
+// function changeMoney($a)
+// {
+//   $dychy=0;
+//   $piatki=0;
+//   $dwojki=0;
+//   $jedynki=0;
+//
+//   for ($i=1; $i < $a; $i++) {
+//     if ($i%10==0) {
+//       $dychy++;
+//     }
+//   }
+//   $temp1=$a-10*$dychy;
+//   for ($i=1; $i < $temp1; $i++) {
+//     if ($i%5==0) {
+//       $piatki++;
+//     }
+//   }
+//   $temp2=$a-(10*$dychy)-(5*$piatki);
+//   for ($i=1; $i < $temp2; $i++) {
+//     if ($i%2==0) {
+//       $dwojki++;
+//     }
+//   }
+//   $temp3=$a-(10*$dychy)-(5*$piatki)-(2*$dwojki);
+//   for ($i=0; $i < $temp3; $i++) {
+//
+//       $jedynki++;
+//
+//   }
+//   echo "jest".$dychy."banknotów po 10 pln oraz: ".$piatki."monet po 5 pln".$dwojki."monet po 2 pln i ".$jedynki."monet po 1 pln";
+// }
+// changeMoney(238);
+//FOREACH
+// $arr = array (
+//   'telefon'=>'655652',
+//   'email'=>'kk@pl',
+//  );
+//
+// foreach ($arr as $key => $value) {
+// if ($key=='telefon') {
+// echo "$value";
+// }
+// }
+// echo'<br>----------<br>';
+// foreach ($arr as $value){
+//   echo $value.'<br>';
+// }
+//-------------------------TABLICE
+
+// $arr=[1,2,3,5,7,9,90];
+//
+// foreach ($arr as $value) {
+//   echo $value."<br>";
+// }
+
+
+$row1=[3,5,7];
+$row2=[5,90,88];
+$row3=[3,1,1];
+$table=[$row1, $row2, $row3];
+function print2DTable($table)
 {
-  $dychy=0;
-  $piatki=0;
-  $dwojki=0;
-  $jedynki=0;
-
-  for ($i=1; $i < $a; $i++) {
-    if ($i%10==0) {
-      $dychy++;
+  foreach ($table as $value) {
+    foreach ($value as $key) {
+      echo $key;
     }
+    echo "<br>";
   }
-  $temp1=$a-10*$dychy;
-  for ($i=1; $i < $temp1; $i++) {
-    if ($i%5==0) {
-      $piatki++;
-    }
   }
-  $temp2=$a-(10*$dychy)-(5*$piatki);
-  for ($i=1; $i < $temp2; $i++) {
-    if ($i%2==0) {
-      $dwojki++;
-    }
-  }
-  $temp3=$a-(10*$dychy)-(5*$piatki)-(2*$dwojki);
-  for ($i=0; $i < $temp3; $i++) {
-
-      $jedynki++;
-
-  }
-  echo "jest".$dychy."banknotów po 10 pln oraz: ".$piatki."monet po 5 pln".$dwojki."monet po 2 pln i ".$jedynki."monet po 1 pln";
-}
-changeMoney(238);
+  print2DTable($table);
  ?>
