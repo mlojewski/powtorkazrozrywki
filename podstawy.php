@@ -277,19 +277,81 @@
 //   echo $value."<br>";
 // }
 
+//
+// $row1=[3,5,7];
+// $row2=[5,90,88];
+// $row3=[3,1,1];
+// $table=[$row1, $row2, $row3];
+// function print2DTable($table)
+// {
+//   foreach ($table as $value) {
+//     foreach ($value as $key) {
+//       echo $key;
+//     }
+//     echo "<br>";
+//   }
+//   }
+//   print2DTable($table);
+//
+// function getMatrixTrace($table)
+// {
+//   $suma=0;
+//   foreach ($table as $key => $table_1) {
+//     foreach ($table_1 as $key_2 => $value) {
+//       if ($key==$key_2) {
+//         $suma+=$value;
+//       }
+//     }
+//   }
+//   return $suma;
+// }
+// echo getMatrixTrace($table);
 
-$row1=[3,5,7];
-$row2=[5,90,88];
-$row3=[3,1,1];
-$table=[$row1, $row2, $row3];
-function print2DTable($table)
-{
-  foreach ($table as $value) {
-    foreach ($value as $key) {
-      echo $key;
-    }
-    echo "<br>";
-  }
-  }
-  print2DTable($table);
+// $arr=[3,5,7,33,11,56,345,1];
+//
+// function showBiggest($arr)
+// {
+//
+//   rsort($arr);
+//   echo($arr[0]);
+// }
+// showBiggest($arr);
+//
+// function getMax($arr)
+// {
+//   echo max($arr);
+// }
+// getMax($arr)
+
+// $arr=[3,44,66,8,36,922];
+//
+// function getBelowAverage($arr)
+// {
+//
+//   $output=[];
+//   $avg=array_sum($arr)/count($arr);
+//   var_dump($avg);
+// foreach ($arr as $value) {
+//   if ($value<$avg) {
+//     array_push($output, $value);
+//   }
+// }
+// print_r($output);
+// }
+// getBelowAverage($arr);
+
+// $check='';
+// $arr=[];
+//
+// function checkMatrix($check, $arr)
+// {
+//   if (in_array($check, $arr)) {
+//     return true;
+//   }
+//   else {
+//     return false;
+//   }
+// }
+// var_dump (checkMatrix(13,[1,2,3,13]));
+// var_dump (checkMatrix(13,[1,2,3]));
  ?>
