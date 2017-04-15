@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_COOKIE['user'])) {
+  setcookie('user', 'marcin', time() + 3600);
+}
 // tutaj umieść kod nastawiający wartośc w ciasteczku
 
 ?>

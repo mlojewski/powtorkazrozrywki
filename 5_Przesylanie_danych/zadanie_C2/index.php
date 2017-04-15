@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+  # code...
+}
 
 /* Tutaj umieść kod który:
  * 1. Wczyta tablicę z ocenami z sesji (jeżeli jej nie ma to ją utworzy)
@@ -14,6 +18,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Zadanie C2</title>
+    <form action="#" method="POST">
+      <label>
+        <input type="number" min="1" max ="6" step="1.00" name="grade">
+
+      </label>
+      <input type="submit" name="ocena" value="polski">
+      <input type="submit" name="ocena" value="angielski">
+      <input type="submit" name="ocena" value="wloski">
+    </form>
 </head>
 <body>
 

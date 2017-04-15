@@ -1,5 +1,9 @@
 <?php
-
+if ($_SERVER['REQUEST_METHOD']=='POST') {
+  setcookie($_POST['cookieName'], $_POST['cookieValue']);
+}else {
+  echo "wejście bez posta";
+}
 // tutaj umieść kod nastawiający wartośc w ciasteczku, ale tylko jeżeli wszeliśmy na stronę metodą POST
 
 ?>

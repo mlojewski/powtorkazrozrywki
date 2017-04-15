@@ -1,6 +1,6 @@
 <?php
 
-
+print_r($_COOKIE);
 
 // tutaj umieść kod wczytujący wartośc z ciasteczka
 

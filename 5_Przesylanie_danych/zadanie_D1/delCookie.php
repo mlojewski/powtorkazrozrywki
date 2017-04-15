@@ -1,7 +1,9 @@
 <?php
-
+if (isset($_COOKIE['user'])) {
+  setcookie('user', 'marcin', time() - 3600);
+}
 // tutaj umieść kod usuwający wartośc z ciasteczka
-
+var_dump($_COOKIE['user']);
 ?>
 
 <!DOCTYPE html>
