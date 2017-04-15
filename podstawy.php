@@ -354,4 +354,24 @@
 // }
 // var_dump (checkMatrix(13,[1,2,3,13]));
 // var_dump (checkMatrix(13,[1,2,3]));
+
+// function createMultiTable($n)
+// {
+//   $a=0;
+//   $b=0;
+//   $arra=[];
+//   $arrb=[];
+//   $all=[];
+//   for ($i=0; $i < $n; $i++) {
+//     $a++;
+//     $b++;
+//     array_push($arra, $a);
+//     array_push($arrb, $b);
+//   }
+//   array_push($all, $arra, $arrb);
+//   var_dump($all);
+// }
+//
+// createMultiTable(7)
+
  ?>
