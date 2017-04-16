@@ -1,5 +1,7 @@
 <?php
-
+if (isset($_COOKIE['jezyk'])) {
+  var_dump($_COOKIE['jezyk']);
+}
 // tutaj umieść kod wczytujący ciasteczko (jeżeli jest)
 
 ?>
@@ -21,7 +23,9 @@
       <input type="submit"></input>
   </form>  <!-- Tutaj umieść formularz do wybierania języka -->
 <?php
-
+if (isset($_COOKIE['jezyk'])) {
+  echo 'wybrano język '.$_COOKIE['jezyk'];
+}
  ?>
     <!-- Tutaj umieść informację o wybranym języku (jeżeli ciasteczko istnieje) -->
 </body>
