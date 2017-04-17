@@ -2,8 +2,12 @@
 
 function compareLotto()
 {
-
-  $prepare=range(1,49);
+  if (isset($_GET['od']) && isset($_GET['do'])) {
+    $prepare=range($_GET['od'], $_GET['do']);
+  }else {
+    $prepare=range(1,49);
+  }
+  var_dump($prepare);
   $compare=array_rand($prepare, 6);
   $result=array_intersect($compare, $_POST['numer']);
   $liczba=count($result);
@@ -37,7 +41,17 @@ function compareLotto()
        <input type="submit">
      </label>
     </form>
-
+    <form action='#' method="GET">
+      <label>
+        od
+        <input type="text" name="od">
+      </label>
+      <label>
+        do
+        <input type="text" name="do">
+      </label>
+      <input type="submit">
+    </form>
   </body>
 </html>
 <?php
