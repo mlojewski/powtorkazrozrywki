@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+
+if (isset(($_SESSION['loggedUser'])) && ($_SESSION['loggedUser'] == true)) {
+  header('Location: mainpage.php');
+  exit();
+}
  ?>
 
 <!DOCTYPE html>

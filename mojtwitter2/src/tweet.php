@@ -3,7 +3,7 @@
 /**
  *
  */
- require ('connection.php');
+ require ('connect.php');
 
 class Tweet
   {
@@ -17,7 +17,7 @@ class Tweet
       $this->id = -1;
       $this->userId = '';
       $this ->text = '';
-      $this ->creationDate = '';
+      $this ->creationDate = "";
     }
   public function getId()
   {
@@ -51,9 +51,9 @@ class Tweet
   }
   public function setCreationDate($creationDate)
   {
-    $this->creationDate = $creationDate  = date('Y-m-d H:i:s');
 
-    return $this;
+      $this->creationDate = date('Y-m-d H:i:s');
+      return true;
 
   }
   public function saveToDB(mysqli $conn)
@@ -84,7 +84,7 @@ class Tweet
       $loadedTweet->id=$row['id'];
       $loadedTweet->userId=$row['userId'];
       $loadedTweet->text=$row['text'];
-      $loadedUser->creationDate=$row['creationDate'];
+      $loadedTweet->creationDate=$row['creationDate'];
       return $loadedTweet;
     }
   return null;
@@ -101,7 +101,7 @@ class Tweet
           $loadedTweet->id=$row['id'];
           $loadedTweet->userId=$row['userId'];
           $loadedTweet->text=$row['text'];
-          $loadedUser->creationDate=$row['creationDate'];
+          $loadedTweet->creationDate=$row['creationDate'];
           $ret[] = $loadedTweet;
         }
       }
@@ -118,7 +118,7 @@ static  public function loadAllTweetsByUserId(mysqli $conn, $userId)
         $loadedTweet->id=$row['id'];
         $loadedTweet->userId=$row['userId'];
         $loadedTweet->text=$row['text'];
-        $loadedUser->creationDate=$row['creationDate'];
+        $loadedTweet->creationDate=$row['creationDate'];
         $ret[] = $loadedTweet;
       }
     }

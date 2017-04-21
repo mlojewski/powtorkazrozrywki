@@ -3,7 +3,7 @@
 /**
  *
  */
-require ('connection.php');
+require ('connect.php');
 
 class TwitterUser
 {

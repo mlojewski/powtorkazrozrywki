@@ -1,6 +1,10 @@
 <?php
 session_start();
-require "connect.php";
+if ((!isset($_POST['login'])) || (!isset($_POST['password']))) {
+  header('Location: index.php');
+  exit();
+}
+require "../src/connect.php";
 
 if($conn->connect_errno!=0){ //jeśli połączenie jest udane - jeśli osattnie połączenie się powiodło
   echo "error: ".$conn->connect_errno." Opis: ".$conn->connect_error;//wywala numer i opis błędu połączenia
@@ -12,7 +16,9 @@ if($conn->connect_errno!=0){ //jeśli połączenie jest udane - jeśli osattnie 
   if ($result=$conn->query($sql)) { // jeśli wykonane zapytanie o powyższej treści jest udane to.. jeśli nie zostanie wykonane to nie wywali błędów na wierzch
     $userNo=$result->num_rows; // ilu jest userów i tym loginie i haśle?
     if ($userNo>0) {//komuś udało się zalogować - tu może wyjść tylko 1 bo login jest unikalny
+      $_SESSION['loggedUser']=true; // ustawienie zmiennej sesyjnej potrzebnej do trzymania statusy "zalogowany"
       $row = $result->fetch_assoc(); // pobierz wiersz z bazy z danymi zalogowanego usera
+      $_SESSION['id']=$row['id'];
       $_SESSION['userLogin']=$row['email']; //zmienna sesyjna trzymająca sam login - email
       $_SESSION['userName']=$row['username'];//zmienna sesyjna trzymająca nazwę użytkownika
       unset($_SESSION['loginFail']); // podwójne zabezpieczenie - jeśli udało się zalogować to usuń zmienną sesyjną z błędem logowania
