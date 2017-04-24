@@ -80,6 +80,7 @@ Gorąca siódemka - ostatnie 7 dodanych tweetów to:<br>
   }
   ?>
 </table>
+<p>Zobacz wszystkie tweety w <a href="../src/tweetarchive.php">archiwum</a></p>
 <br>
 <?php
 $tweetUserLoad = Tweet::loadAllTweetsByUserId($conn, $_SESSION['id']);
@@ -91,7 +92,7 @@ Ostatnie 10 Twoich tweetów
 <br>
 <br>
 <table border="3" cellspacing="5">
-  <tr><th>Treść tweeta</th><th>Data przesłania</th><th>liczba komentarzy</th></tr>
+  <tr><th>Treść tweeta</th><th>Data przesłania</th><th>liczba komentarzy</th><th>strona tweetu</th></tr>
 
   <?php
 foreach ($tweetUserLoadProper as $value) {
@@ -101,10 +102,16 @@ foreach ($tweetUserLoadProper as $value) {
   echo "<td>".$value->gettext()."</td>";
   echo "<td>".$value->getCreationDate()."</td>";
   echo "<td>.$liczbaKomentow.</td>";//dlaczego są kropki?
+  echo '<td><form action="../src/singletweet.php" method="GET">
+                  <input type="hidden" name="tweetId" value="'.$value->getId().'" />
+                  <input type="submit" value="Zobacz" />
+                </form></td>';
   echo "</tr>";
   }
   ?>
   </table>
+  <br>
+  <p>Zobacz wszystkie swoje tweety w <a href="../src/tweetuserarchive.php">archiwum</a></p>
 <br>
 <br>
 <?php
@@ -130,9 +137,11 @@ foreach ($commentUserLoadProper as $value) {
   echo "<td>".$value->getCreationDate()."</td>";
   echo "<td>".$row['text']."</td>";
   echo "</tr>";
-}//TODO:jakimś cudem pobrać treść a nie tylko ID komentarza
+}
   ?>
+
   </table>
+    <p>Zobacz wszystkie swoje komentarze w <a href="../src/commentuserarchive.php">archiwum</a></p>
 <br>
   </body>
 </html>
