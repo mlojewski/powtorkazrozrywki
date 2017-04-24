@@ -1,6 +1,6 @@
 <?php
 
-require 'connection.php';
+require ('connect.php');
 
 /**
  *
@@ -155,13 +155,5 @@ static public function loadAllCommentsByUserId(mysqli $conn, $userId)
   return $ret;
 }
 }
-// $test=Comments::loadAllCommentsByTweetId($conn,8);
-// var_dump($test);
-// $test = new Comments();
-// $test -> setUserId(11);
-// $test -> setTweetId(81);
-// $test -> setCreationDate();
-// $test -> settext('komentarz66');
-// $test -> saveToDB($conn);
-// var_dump($test);
+
  ?>

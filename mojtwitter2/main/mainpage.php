@@ -3,6 +3,7 @@
 require "../src/tweet.php";
 require "../src/user.php";
 require "../src/connect.php";
+require "../src/comment.php";
 session_start();
 if (!isset($_SESSION['loggedUser'])) {// takiego ifa wklejamy do każdej podstrony do której ma mieć dostęp zalogowany user
   header('Location: index.php');
@@ -35,6 +36,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){// dodawanie nowego tweeta do bazy mysq
     $newTweet->settext($_POST['tweet']);
     $newTweet->setCreationDate(date('Y-m-d H:i:s'));
     $addNewTweet = $newTweet->saveToDB($conn);
+    if ($addNewTweet== true) {
+      header("Location: mainpage.php");
+    }
 
   //TODO dodać w cudowny sposób informowanie o dodaniu nowego tweeta
   }
@@ -57,6 +61,7 @@ Gorąca siódemka - ostatnie 7 dodanych tweetów to:<br>
 
 
 <?php
+
   foreach ($tweetProper as $value) {
     $id=$value->getUserId();
     $sql="SELECT email, username FROM users WHERE id=$id";
@@ -90,16 +95,44 @@ Ostatnie 10 Twoich tweetów
 
   <?php
 foreach ($tweetUserLoadProper as $value) {
+  $commentLoadByTweetID = Comments::loadAllCommentsByTweetId($conn, $value->getId());
+  $liczbaKomentow = count($commentLoadByTweetID);//liczę długość tablicy z komentarzami do danego tweeta
   echo "<tr>";
   echo "<td>".$value->gettext()."</td>";
   echo "<td>".$value->getCreationDate()."</td>";
-  echo "<td> tu będzie liczba komentów</td>";
+  echo "<td>.$liczbaKomentow.</td>";//dlaczego są kropki?
   echo "</tr>";
   }
   ?>
   </table>
 <br>
 <br>
+<?php
+$commentUserLoad = Comments::loadAllCommentsByUserId($conn, $_SESSION['id']);
+$commentUserLoadPreProper = array_reverse($commentUserLoad);
+$commentUserLoadProper = array_slice($commentUserLoadPreProper, 0, 10);
 
+?>
+Ostatnie 10 Twoich komentarzy
+<br>
+<br>
+<table border="3" cellspacing="5">
+  <tr><th>Treść komentarza</th><th>Data przesłania</th><th>komentarz do tweeta </th></tr>
+
+  <?php
+foreach ($commentUserLoadProper as $value) {
+  $selectedTweetID = $value->getTweetId();
+  $sql="SELECT text FROM tweet WHERE id=$selectedTweetID";
+  $result = $conn->query($sql);
+  $row=$result->fetch_assoc();
+  echo "<tr>";
+  echo "<td>".$value->gettext()."</td>";
+  echo "<td>".$value->getCreationDate()."</td>";
+  echo "<td>".$row['text']."</td>";
+  echo "</tr>";
+}//TODO:jakimś cudem pobrać treść a nie tylko ID komentarza
+  ?>
+  </table>
+<br>
   </body>
 </html>
