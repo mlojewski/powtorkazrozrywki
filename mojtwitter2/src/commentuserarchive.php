@@ -42,6 +42,6 @@ $commentUserLoadPreProper = array_reverse($commentUserLoad);
        ?>
        </table>
      <br>
-       </body>
+       Jeśli chcesz wrócić do strony głównej kliknij <a href="../main/mainpage.php">tutaj</a>
    </body>
  </html>
