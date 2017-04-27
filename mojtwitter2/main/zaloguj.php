@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ((!isset($_POST['login'])) || (!isset($_POST['password']))) {
-  header('Location: index.php');
+  // header('Location: index.php');
   exit();
 }
 require "../src/connect.php";
@@ -12,25 +12,33 @@ if($conn->connect_errno!=0){ //jeśli połączenie jest udane - jeśli osattnie 
   $login=$_POST['login'];
   $password=$_POST['password'];
 
-  $sql="SELECT * FROM users WHERE email='$login' AND hashedPassword='$password'";//tresć zapytania do bazy - wyszukaj użytkownika o takim loginie i haśle
-  if ($result=$conn->query($sql)) { // jeśli wykonane zapytanie o powyższej treści jest udane to.. jeśli nie zostanie wykonane to nie wywali błędów na wierzch
-    $userNo=$result->num_rows; // ilu jest userów i tym loginie i haśle?
-    if ($userNo>0) {//komuś udało się zalogować - tu może wyjść tylko 1 bo login jest unikalny
-      $_SESSION['loggedUser']=true; // ustawienie zmiennej sesyjnej potrzebnej do trzymania statusy "zalogowany"
-      $row = $result->fetch_assoc(); // pobierz wiersz z bazy z danymi zalogowanego usera
-      $_SESSION['id']=$row['id'];
-      $_SESSION['userLogin']=$row['email']; //zmienna sesyjna trzymająca sam login - email
-      $_SESSION['userName']=$row['username'];//zmienna sesyjna trzymająca nazwę użytkownika
-      unset($_SESSION['loginFail']); // podwójne zabezpieczenie - jeśli udało się zalogować to usuń zmienną sesyjną z błędem logowania
-      $result->close();//usuwa pobrany rekord z bazy
-      header('Location: mainpage.php');//przekierowanie na stronę główną
+  $sql="SELECT * FROM users WHERE email ='$login'AND hashedPassword ='$password'";//tresć zapytania do bazy - wyszukaj użytkownika o takim loginie i haśle
 
+  if ($result=$conn->query($sql)) { // jeśli wykonane zapytanie o powyższej treści jest udane to.. jeśli nie zostanie wykonane to nie wywali błędów na wierzch
+
+    $userNo=$result->num_rows; // ilu jest userów i tym loginie i haśle?
+
+    if ($userNo>0) {//komuś udało się zalogować - tu może wyjść tylko 1 bo login jest unikalny
+      $row = $result->fetch_assoc();// pobierz wiersz z bazy z danymi zalogowanego usera
+        if ($password == $row['hashedPassword']) {
+        $_SESSION['loggedUser']=true; // ustawienie zmiennej sesyjnej potrzebnej do trzymania statusy "zalogowany"
+        $_SESSION['id']=$row['id'];
+        $_SESSION['userLogin']=$row['email']; //zmienna sesyjna trzymająca sam login - email
+        $_SESSION['userName']=$row['username'];//zmienna sesyjna trzymająca nazwę użytkownika
+        unset($_SESSION['loginFail']); // podwójne zabezpieczenie - jeśli udało się zalogować to usuń zmienną sesyjną z błędem logowania
+        $result->close();//usuwa pobrany rekord z bazy
+        header('Location: mainpage.php');//przekierowanie na stronę główną
+      }else {
+        $_SESSION['loginFail']='<span style="color:purple"><b>Nieprawidłowe dane logowania spróbuj jeszcze raz!</b></span>';
+        // header('Location:index.php'); //jeśli nie udało się zalogować to ustaw zmienna sesyjna
+      }
     }else {//nie udało się zalogować
       $_SESSION['loginFail']='<span style="color:purple"><b>Nieprawidłowe dane logowania spróbuj jeszcze raz!</b></span>';
-      header('Location:index.php'); //jeśli nie udało się zalogować to ustaw zmienna sesyjna
+      // header('Location:index.php'); //jeśli nie udało się zalogować to ustaw zmienna sesyjna
     }
-  };
-  $conn->close();
+  }
 }
+  // $conn->close();
+
 
  ?>
