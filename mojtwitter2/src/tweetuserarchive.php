@@ -33,7 +33,7 @@ $tweetUserLoadPreProper = array_reverse($tweetUserLoad);
       echo "<tr>";
       echo "<td>".$value->gettext()."</td>";
       echo "<td>".$value->getCreationDate()."</td>";
-      echo "<td>.$liczbaKomentow.</td>";//dlaczego są kropki?
+      echo "<td>".$liczbaKomentow."</td>";//dlaczego są kropki?
       echo '<td><form action="../src/singletweet.php" method="GET">
                       <input type="hidden" name="tweetId" value="'.$value->getId().'" />
                       <input type="submit" value="Zobacz" />
@@ -42,6 +42,6 @@ $tweetUserLoadPreProper = array_reverse($tweetUserLoad);
       }
       ?>
       </table>
-      Jeśli chcesz wrócić do strony głównej kliknij <a href="../main/mainpage.php">tutaj</a>
+      Jeśli chcesz wrócić do strony głównej kliknij <a href="../main/mainpage.php">tutaj</a
   </body>
 </html>

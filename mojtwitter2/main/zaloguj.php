@@ -4,6 +4,7 @@ if ((!isset($_POST['login'])) || (!isset($_POST['password']))) {
   header('Location: index.php');
   exit();
 }
+
 require "../src/connect.php";
 
 if($conn->connect_errno!=0){ //jeśli połączenie jest udane - jeśli osattnie połączenie się powiodło

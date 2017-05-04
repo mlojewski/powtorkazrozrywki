@@ -131,7 +131,7 @@ class Message {
         $loadedMessage = new Message ();
         $loadedMessage->id=$row['message_id'];
         $loadedMessage->sender_id=$row['sender_id'];
-        $loadedMessage->recipient_it=$row['recipient_it'];
+        $loadedMessage->recipient_id=$row['recipient_id'];
         $loadedMessage->text=$row['text'];
         $loadedMessage->date=$row['date'];
         $loadedMessage->readconfirm=$row['readconfirm'];

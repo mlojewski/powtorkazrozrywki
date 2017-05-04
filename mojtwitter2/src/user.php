@@ -92,6 +92,24 @@ class TwitterUser
     }
     return null;
   }
+
+  static public function loadUserByUsername(mysqli $conn, $userName)
+  {
+    $sql = "SELECT * FROM users WHERE username=$userName";
+
+    $result = $conn->query($sql);
+    if ($result == true && $result->num_rows == 1) {
+      $row = $result->fetch_assoc();
+      $loadedUser = new TwitterUser();
+      $loadedUser ->id=$row['id'];
+      $loadedUser ->email = $row['email'];
+      $loadedUser ->userName = $row['username'];
+      $loadedUser ->hashedPassword = $row['hashedPassword'];
+      return $loadedUser;
+    }
+    return null;
+  }
+
   static public function loadAllUsers(mysqli $conn)
   {
     $sql = "SELECT * FROM users";
@@ -129,23 +147,4 @@ class TwitterUser
 
 
 
-// $user1 = TwitterUser::loadUserByID($conn, 1);
-// $user1 ->setUserName("albercik");
-// $user1->saveToDB($conn);
-// var_dump($user1);
-// var_dump(TwitterUser::loadUserByID($conn, 1));
-// var_dump(TwitterUser::loadAllUsers($conn));
-// $test = new TwitterUser();
-// $test->setUserName("Ola");
-// $test->setEmail("c@a.pl");
-// $test->setHashedPassword('addd');
-// $test->saveToDB($conn);
-// $test->loadUserByID($conn, 1);
-// var_dump($test);
-// $user2 = new TwitterUser();
-// $user2 -> setUserName('jagoda');
-// $user2-> setEmail('gg@f.pl');
-// $user2 -> setHashedPassword('kjjsjj');
-// $user2 ->saveToDB($conn);
-// var_dump($user2);
  ?>

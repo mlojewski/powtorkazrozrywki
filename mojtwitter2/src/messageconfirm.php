@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $newMessage->setRecipientId($_GET['recipient_id']);
     $newMessage->settext($_GET['message']);
     $newMessage->setDate(date('Y-m-d H:i:s'));
-    $newMessage->setReadconfirm();
+    $newMessage->setReadconfirm(0);
     $addNewMessage = $newMessage->saveToDB($conn);
     if ($addNewMessage== true) {
       $_SESSION['message_sent'] = true;
