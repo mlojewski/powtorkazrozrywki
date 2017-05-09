@@ -1,0 +1,7 @@
+1 propagacja eventów to przekazywanie wydarzeń w drzewie dom. można ją zatrzymać poprzez polecenia stopPropagation albo stopImmediatePropagation. Można ją przeprowadzić na dwa sposoby:
+bubbling - przekazywanie w górę drzewa czyli od dzieci do rodziców, dziadków itp
+
+capturing - przekazywanie w dół drzewa czyli zgodnie z dziedziczeniem - od dziadków do rodziców do dzieci itp. Ta funkcja stosowana jest w starszych przeglądarkach
+
+ 2. wkładając kod Javascript w tą funkcję mamy pewność że wsystkie działania które wpisujemy w kod wykonają się dopiero po załadowaniu całęj strony i nie zaburzą pracy strony (poza oczywiście takimi, które zadamy w kodzie JS).
+
