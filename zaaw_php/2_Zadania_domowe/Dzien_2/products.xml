@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <Products
+            id="1"
+            category_id="1"
+            name="Product 1"
+            price="10.99"
+            description="Test product"
+            quantity="100"/>
+    <Products
+            id="2"
+            category_id="2"
+            name="Product 2"
+            price="32.11"
+            description="Test product 2"
+            quantity="50"/>
+    <Products
+            id="3"
+            name="Product 3"
+            price="356.80"
+            description="Test product 3"
+            quantity="1"/>       
+</dataset>
